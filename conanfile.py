@@ -725,7 +725,11 @@ class BoostConan(ConanFile):
         if "ASFLAGS" in os.environ:
             contents += '<asmflags>"%s" ' % os.environ["ASFLAGS"]
 
-        contents += " ;"
+        contents += ";"
+
+        if not self.options.without_mpi:
+            contents += "\nusing mpi ;"
+        
 
         self.output.warn(contents)
         filename = "%s/user-config.jam" % folder
