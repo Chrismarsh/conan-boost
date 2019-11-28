@@ -26,13 +26,13 @@ lib_list = ['math', 'wave', 'container', 'contract', 'exception', 'graph', 'iost
 
 class BoostConan(ConanFile):
     name = "boost"
-    version = "1.71.0"
     settings = "os", "arch", "compiler", "build_type"
     description = "Boost provides free peer-reviewed portable C++ source libraries"
     url = "https://github.com/conan-io/conan-center-index"
     homepage = "https://www.boost.org"
     license = "BSL-1.0"
     topics = ("conan", "boost", "libraries", "cpp")
+    version = "1.71.0"
     # The current python option requires the package to be built locally, to find default Python
     # implementation
     options = {
@@ -140,6 +140,13 @@ class BoostConan(ConanFile):
         tools.get(**self.conan_data["sources"][self.version])
         for patch in self.conan_data["patches"][self.version]:
             tools.patch(**patch)
+        if self.version == "1.71.0":
+            os.rename(
+                os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "strings.h"),
+                os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "jam_strings.h"))
+            os.rename(
+                os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "strings.cpp"),
+                os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "jam_strings.cpp"))
 
     ##################### BUILDING METHODS ###########################
 
