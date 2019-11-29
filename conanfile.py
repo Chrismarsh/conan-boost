@@ -58,7 +58,7 @@ class BoostConan(ConanFile):
     }
     options.update({"without_%s" % libname: [True, False] for libname in lib_list})
 
-    default_options = ["shared=False",
+    default_options = ["shared=True",
                        "header_only=False",
                        "error_code_header_only=False",
                        "system_no_deprecated=False",
