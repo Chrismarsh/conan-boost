@@ -10,7 +10,6 @@ if __name__ == "__main__":
 
     builder.remove_build_if(lambda build: build.settings["compiler.libcxx"] == "libstdc++")
 
-
     named_builds = defaultdict(list)
     for settings, options, env_vars, build_requires, reference in builder.items:
 
