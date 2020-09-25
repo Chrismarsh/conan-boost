@@ -58,31 +58,35 @@ class BoostConan(ConanFile):
     }
     options.update({"without_%s" % libname: [True, False] for libname in lib_list})
 
-    default_options = ["shared=True",
-                       "header_only=False",
-                       "error_code_header_only=False",
-                       "system_no_deprecated=False",
-                       "asio_no_deprecated=False",
-                       "filesystem_no_deprecated=False",
-                       "fPIC=True",
-                       "layout=system",
-                       "magic_autolink=False",
-                       "python_executable=None",
-                       "python_version=None",
-                       "namespace=boost",
-                       "namespace_alias=False",
-                       "zlib=True",
-                       "bzip2=True",
-                       "lzma=False",
-                       "zstd=False",
-                       "segmented_stacks=False",
-                       "extra_b2_flags=None"]
+    default_options = { "shared": True,
+    "header_only": False,
+    "error_code_header_only": False,
+    "system_no_deprecated": False,
+    "asio_no_deprecated": False,
+    "filesystem_no_deprecated": False,
+    "fPIC": True,
+    "layout": system,
+    "magic_autolink": False,
+    "python_executable": None,
+    "python_version": None,
+    "namespace": boost,
+    "namespace_alias": False,
+    "zlib": True,
+    "bzip2": True,
+    "lzma": False,
+    "zstd": False,
+    "segmented_stacks": False,
+    "extra_b2_flags": None
+    }
 
-    default_options.extend(["without_%s=False" % libname for libname in lib_list if libname != "python" or libname != "mpi"])
-    default_options.append("without_python=True")
-    default_options.append("without_mpi=True")
+    for libname in lib_list:
+        if not libname in ['python','mpi']:
+            default_options["without_%s" % libname] = False
 
-    default_options = tuple(default_options)
+    default_options["without_python"]=True
+    default_options["without_mpi"]: True
+
+ 
     short_paths = True
     no_copy_source = True
     exports_sources = ['patches/*']
