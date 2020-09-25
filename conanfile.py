@@ -84,7 +84,7 @@ class BoostConan(ConanFile):
             default_options["without_%s" % libname] = False
 
     default_options["without_python"]=True
-    default_options["without_mpi"]: True
+    default_options["without_mpi"] = True
 
  
     short_paths = True
