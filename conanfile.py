@@ -78,8 +78,10 @@ class BoostConan(ConanFile):
                        "segmented_stacks=False",
                        "extra_b2_flags=None"]
 
-    default_options.extend(["without_%s=False" % libname for libname in lib_list if libname != "python"])
+    default_options.extend(["without_%s=False" % libname for libname in lib_list if libname != "python" or libname != "mpi"])
     default_options.append("without_python=True")
+    default_options.append("without_mpi=True")
+
     default_options = tuple(default_options)
     short_paths = True
     no_copy_source = True
