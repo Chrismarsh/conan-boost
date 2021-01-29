@@ -143,15 +143,18 @@ class BoostConan(ConanFile):
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
-        for patch in self.conan_data["patches"][self.version]:
-            tools.patch(**patch)
-        if self.version == "1.71.0":
-            os.rename(
-                os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "strings.h"),
-                os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "jam_strings.h"))
-            os.rename(
-                os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "strings.cpp"),
-                os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "jam_strings.cpp"))
+        try:
+            for patch in self.conan_data["patches"][self.version]:
+                tools.patch(**patch)
+            if self.version == "1.71.0":
+                os.rename(
+                    os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "strings.h"),
+                    os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "jam_strings.h"))
+                os.rename(
+                    os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "strings.cpp"),
+                    os.path.join(self.source_folder, "boost_1_71_0", "tools", "build", "src", "engine", "jam_strings.cpp"))
+        except KeyError as e:
+            pass # we might not have a patch for this version
 
     ##################### BUILDING METHODS ###########################
 
