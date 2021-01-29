@@ -32,7 +32,6 @@ class BoostConan(ConanFile):
     homepage = "https://www.boost.org"
     license = "BSL-1.0"
     topics = ("conan", "boost", "libraries", "cpp")
-    version = "1.71.0"
     # The current python option requires the package to be built locally, to find default Python
     # implementation
     options = {
