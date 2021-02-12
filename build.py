@@ -1,6 +1,6 @@
 from cpt.packager import ConanMultiPackager
 from collections import defaultdict
-
+import os
 if __name__ == "__main__":
     builder = ConanMultiPackager(cppstds=[14],
                                 archs=["x86_64"],
@@ -17,6 +17,9 @@ if __name__ == "__main__":
 
         if not options['boost:shared']:
             shared = "static" 
+
+        if os.environ['USE_MPI'] == 'with-mpi':
+            options['boost:without_mpi'] = False
 
         named_builds[settings['compiler'] +"_"+shared].append([settings, options, env_vars, build_requires, reference])
 
