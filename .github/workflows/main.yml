@@ -57,7 +57,7 @@ jobs:
           pip install conan --upgrade
           pip install conan_package_tools
           
-       - name: Install MPI
+      - name: Install MPI
         if: ${{ matrix.use-mpi  == 'with-mpi' }}
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
