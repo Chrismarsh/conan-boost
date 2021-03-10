@@ -21,6 +21,7 @@ env:
   CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
   CONAN_STABLE_BRANCH_PATTERN: "stable/*"
   CONAN_UPLOAD_ONLY_WHEN_STABLE: "1"
+  CONAN_REQUEST_TIMEOUT: "600"
   MAKEFLAGS: "-j2"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
