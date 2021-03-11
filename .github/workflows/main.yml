@@ -68,6 +68,7 @@ jobs:
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
             sudo apt-get update
+            sudo apt-get upgrade
             sudo apt-get install libopenmpi-dev
           else
             brew install openmpi
