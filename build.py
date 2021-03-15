@@ -14,5 +14,8 @@ if __name__ == "__main__":
     if os.environ['USE_MPI'] == 'with-mpi':
         builder.options['boost:without_mpi'] = False
 
+    builder.update_build_if(lambda build: os.environ['USE_MPI'] == 'with-mpi',
+                        new_options={'boost:without_mpi': False})
+
     builder.run()
 
