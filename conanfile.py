@@ -122,13 +122,13 @@ class BoostConan(ConanFile):
     def requirements(self):
         if self._zip_bzip2_requires_needed:
             if self.options.zlib:
-                self.requires("zlib/1.2.11")
+                self.requires("zlib/[>=1.2.0]")
             if self.options.bzip2:
-                self.requires("bzip2/1.0.8")
+                self.requires("bzip2/[>=1.0.0]")
             if self.options.lzma:
-                self.requires("xz_utils/5.2.4")
+                self.requires("xz_utils/[>=5.2.0]")
             if self.options.zstd:
-                self.requires("zstd/1.4.3")
+                self.requires("zstd/[>=1.4.0]")
 
     def package_id(self):
         if self.options.header_only:
